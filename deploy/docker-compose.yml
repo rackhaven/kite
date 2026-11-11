@@ -5,7 +5,7 @@
 #   docker compose --profile agent up -d   # hub and an agent for this machine
 services:
   hub:
-    image: ghcr.io/retransmit/kite-hub:${KITE_VERSION:-latest}
+    image: ghcr.io/rackhaven/kite-hub:${KITE_VERSION:-latest}
     ports:
       - "8420:8420"
     env_file: .env
@@ -15,7 +15,7 @@ services:
 
   agent:
     profiles: ["agent"]
-    image: ghcr.io/retransmit/kite-agent:${KITE_VERSION:-latest}
+    image: ghcr.io/rackhaven/kite-agent:${KITE_VERSION:-latest}
     network_mode: host
     pid: host
     volumes:

@@ -46,8 +46,8 @@ The hub runs as a container. On the machine that will host it:
 
 ```sh
 mkdir kite && cd kite
-curl -fsSLO https://raw.githubusercontent.com/retransmit/kite/main/deploy/docker-compose.yml
-curl -fsSL https://raw.githubusercontent.com/retransmit/kite/main/deploy/.env.example -o .env
+curl -fsSLO https://raw.githubusercontent.com/rackhaven/kite/main/deploy/docker-compose.yml
+curl -fsSL https://raw.githubusercontent.com/rackhaven/kite/main/deploy/.env.example -o .env
 # edit .env: set AGENT_TOKEN to a long random string (openssl rand -hex 32),
 # and WEB_PASSWORD if the dashboard should need a password
 docker compose up -d
@@ -78,7 +78,7 @@ On Linux, running as root lets the agent read CPU power (RAPL); `kite-agent -onc
 With Go 1.26 or newer (no C toolchain or Node.js needed; the dashboard is built into the hub):
 
 ```sh
-git clone https://github.com/retransmit/kite.git && cd kite
+git clone https://github.com/rackhaven/kite.git && cd kite
 scripts/release-build.sh dev    # dist/: hubs, agents and SHA256SUMS; the hub embeds the agents
 AGENT_TOKEN=change-me dist/kite-hub-linux-amd64
 ```
@@ -156,7 +156,7 @@ Windows-only code can be tested on a Windows machine with OpenSSH: `WINTEST_HOST
 
 ## Releases
 
-Pushing a tag such as `v0.1.0` runs `.github/workflows/release.yml`: it tests, runs `scripts/release-build.sh`, publishes `ghcr.io/retransmit/kite-hub` and `ghcr.io/retransmit/kite-agent` for amd64 and arm64, and creates a GitHub release with the binaries and `SHA256SUMS`.
+Pushing a tag such as `v0.1.0` runs `.github/workflows/release.yml`: it tests, runs `scripts/release-build.sh`, publishes `ghcr.io/rackhaven/kite-hub` and `ghcr.io/rackhaven/kite-agent` for amd64 and arm64, and creates a GitHub release with the binaries and `SHA256SUMS`.
 
 ## License
 
