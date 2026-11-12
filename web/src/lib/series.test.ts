@@ -29,6 +29,12 @@ describe('chartSpecs', () => {
     expect(chartSpecs(['cpu.total', 'mem.used', 'mem.total']).map((c) => c.id)).toEqual(['cpu', 'memory'])
   })
 
+  it('scales swap against its total, not just what is used', () => {
+    // Without the total, a swap-used line has nothing to be read against.
+    const m = chartSpecs(['mem.used', 'mem.total', 'swap.used', 'swap.total']).find((c) => c.id === 'memory')!
+    expect(m.series.map((s) => s.key)).toEqual(['mem.used', 'mem.total', 'swap.used', 'swap.total'])
+  })
+
   it('collects every power source into one chart', () => {
     const p = chartSpecs(['power.cpu_w', 'power.platform_w', 'gpu.1.power_w', 'battery.w']).find((c) => c.id === 'power')!
     expect(p.unit).toBe('watts')

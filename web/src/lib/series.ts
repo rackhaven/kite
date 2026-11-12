@@ -32,7 +32,7 @@ export function chartSpecs(keys: string[]): ChartSpec[] {
     .sort((a, b) => num(a.slice(9)) - num(b.slice(9)))
   add({ id: 'cores', title: 'CPU per core', unit: 'pct', collapsed: true, series: cores.map((k) => ({ key: k, label: `core ${k.slice(9)}` })) })
 
-  add({ id: 'memory', title: 'Memory', unit: 'bytes', series: pick([['mem.used', 'used'], ['mem.total', 'total'], ['swap.used', 'swap used']]) })
+  add({ id: 'memory', title: 'Memory', unit: 'bytes', series: pick([['mem.used', 'used'], ['mem.total', 'total'], ['swap.used', 'swap used'], ['swap.total', 'swap total']]) })
 
   const gpus = [...new Set(keys.map((k) => /^gpu\.(\d+)\./.exec(k)?.[1]).filter((v): v is string => v !== undefined))].sort((a, b) => num(a) - num(b))
   for (const g of gpus) {
